@@ -70,9 +70,9 @@ class PugListViewController: UIViewController {
         }
     }
     
-    let api: APIProtocol.Type
+    let api: API
     
-    init(api:APIProtocol.Type) {
+    init(api:API) {
         self.api = api
         super.init(nibName: nil, bundle: nil)
     }
@@ -100,7 +100,8 @@ class PugListViewController: UIViewController {
     @objc
     func refresh() {
         state = .loading
-        API.getPugList {[weak self] (error, pugs) in
+        api.getPugList {[weak self] (error, pugs) in
+
             if let error = error {
                 self?.state = .error(error)
                 return

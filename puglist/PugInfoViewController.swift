@@ -64,9 +64,9 @@ class PugInfoViewController: UIViewController {
     }
     
     let pugId: String
-    let api: APIProtocol.Type
+    let api: API
     
-    init(pugId: String, api:APIProtocol.Type) {
+    init(pugId: String, api:API) {
         self.pugId = pugId
         self.api = api
         super.init(nibName: nil, bundle: nil)

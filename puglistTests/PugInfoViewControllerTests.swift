@@ -12,7 +12,10 @@ import XCTest
 class PugInfoViewControllerTests: XCTestCase {
 
     func testError() {
-        let vc = PugInfoViewController(pugId: "pugId" ,api: APIError.self)
+        let api = API()
+        api.getPugInfo = { $1(NSError(domain: "", code: 0, userInfo: nil),nil) }
+        
+        let vc = PugInfoViewController(pugId: "pugId" ,api: api)
         _ = vc.view
         if case PugInfoViewControllerState.error(_) = vc.state {
             
@@ -22,28 +25,15 @@ class PugInfoViewControllerTests: XCTestCase {
     }
 
     func testNormal() {
-        let vc = PugInfoViewController(pugId: "pugId" ,api: APINormal.self)
+        let api = API()
+        api.getPugInfo = { $1(nil,.init(pugId: "", name: "", photo: "", birthday: "", gender: "")) }
+        
+        let vc = PugInfoViewController(pugId: "pugId" ,api: api)
         _ = vc.view
         if case PugInfoViewControllerState.normal(_) = vc.state {
             
         } else {
             XCTFail("PugList is not normal")
         }
-    }
-}
-
-private class APIError : APIProtocol {
-    static func getPugList(_ callback: @escaping (Error?, [Pug]?) -> ()) {
-    }
-    static func getPugInfo(_ pugId: String, _ callback: @escaping (Error?, PugInfo?) -> ()) {
-        callback(NSError.init(domain: "", code: 0, userInfo: nil),nil)
-    }
-}
-
-private class APINormal : APIProtocol {
-    static func getPugList(_ callback: @escaping (Error?, [Pug]?) -> ()) {
-    }
-    static func getPugInfo(_ pugId: String, _ callback: @escaping (Error?, PugInfo?) -> ()) {
-        callback(nil, .init(pugId: "", name: "", photo: "", birthday: "", gender: "") )
     }
 }

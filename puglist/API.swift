@@ -8,68 +8,54 @@
 
 import Foundation
 
-enum API {
-    static func getPugList(_ callback:@escaping (Error?, [Pug]?) -> ()) {
-        URLSession.shared.dataTask(
-            with: URL(string: "https://fengyi-line.github.io/Puglist/api/list.json")!
-        ) { (data, response, error) in
-            if let error = error {
-                DispatchQueue.main.async {
-                    callback(error, nil)
-                }
-                return
-            }
-            
-            guard let data = data, let items = try? JSONDecoder().decode([Pug].self, from: data) else {
-                DispatchQueue.main.async {
-                    callback(nil, nil)
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                callback(nil, items)
-            }
-        }.resume()
-    }
-
-    static func getPugInfo(_ pugId:String, _ callback:@escaping (Error?, PugInfo?) -> ()) {
-        URLSession.shared.dataTask(
-            with: URL(string: "https://fengyi-line.github.io/Puglist/api/info/\(pugId).json")!
-        ) { (data, response, error) in
-            if let error = error {
-                DispatchQueue.main.async {
-                    callback(error, nil)
-                }
-                return
-            }
-
-            guard let data = data, let item = try? JSONDecoder().decode(PugInfo.self, from: data) else {
-                DispatchQueue.main.async {
-                    callback(nil, nil)
-                }
-                return
-            }
-
-            DispatchQueue.main.async {
-                callback(nil, item)
-            }
-        }.resume()
-    }
+class API {
+    var getPugList = getPugList(_:)
+    var getPugInfo = getPugInfo(_:_:)
 }
 
-protocol APIProtocol {
-    static func getPugList(_ callback:@escaping (Error?, [Pug]?) -> ())
-    static func getPugInfo(_ pugId:String, _ callback:@escaping (Error?, PugInfo?) -> ())
+private func getPugList(_ callback:@escaping (Error?, [Pug]?) -> ()) {
+    URLSession.shared.dataTask(
+        with: URL(string: "https://fengyi-line.github.io/Puglist/api/list.json")!
+    ) { (data, response, error) in
+        if let error = error {
+            DispatchQueue.main.async {
+                callback(error, nil)
+            }
+            return
+        }
+        
+        guard let data = data, let items = try? JSONDecoder().decode([Pug].self, from: data) else {
+            DispatchQueue.main.async {
+                callback(nil, nil)
+            }
+            return
+        }
+        DispatchQueue.main.async {
+            callback(nil, items)
+        }
+        }.resume()
 }
 
-extension API : APIProtocol {}
-
-class MockAPI : APIProtocol {
-    static func getPugList(_ callback: @escaping (Error?, [Pug]?) -> ()) {
-        callback(NSError(domain: "", code: 0, userInfo: nil), nil)
-    }
-
-    static func getPugInfo(_ pugId: String, _ callback: @escaping (Error?, PugInfo?) -> ()) {
-        callback(NSError(domain: "", code: 0, userInfo: nil), nil)
-    }
+private func getPugInfo(_ pugId:String, _ callback:@escaping (Error?, PugInfo?) -> ()) {
+    URLSession.shared.dataTask(
+        with: URL(string: "https://fengyi-line.github.io/Puglist/api/info/\(pugId).json")!
+    ) { (data, response, error) in
+        if let error = error {
+            DispatchQueue.main.async {
+                callback(error, nil)
+            }
+            return
+        }
+        
+        guard let data = data, let item = try? JSONDecoder().decode(PugInfo.self, from: data) else {
+            DispatchQueue.main.async {
+                callback(nil, nil)
+            }
+            return
+        }
+        
+        DispatchQueue.main.async {
+            callback(nil, item)
+        }
+        }.resume()
 }

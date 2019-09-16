@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController  = UINavigationController(
-            rootViewController: PugListViewController(api: API.self)
+            rootViewController: PugListViewController(api: API())
         )
         window?.makeKeyAndVisible()
         
