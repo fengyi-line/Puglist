@@ -56,3 +56,20 @@ enum API {
         }.resume()
     }
 }
+
+protocol APIProtocol {
+    static func getPugList(_ callback:@escaping (Error?, [Pug]?) -> ())
+    static func getPugInfo(_ pugId:String, _ callback:@escaping (Error?, PugInfo?) -> ())
+}
+
+extension API : APIProtocol {}
+
+class MockAPI : APIProtocol {
+    static func getPugList(_ callback: @escaping (Error?, [Pug]?) -> ()) {
+        callback(NSError(domain: "", code: 0, userInfo: nil), nil)
+    }
+
+    static func getPugInfo(_ pugId: String, _ callback: @escaping (Error?, PugInfo?) -> ()) {
+        callback(NSError(domain: "", code: 0, userInfo: nil), nil)
+    }
+}

@@ -70,6 +70,17 @@ class PugListViewController: UIViewController {
         }
     }
     
+    let api: APIProtocol.Type
+    
+    init(api:APIProtocol.Type) {
+        self.api = api
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -111,7 +122,13 @@ extension PugListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pugItem = pugs[indexPath.row]
-        self.navigationController?.pushViewController(PugInfoViewController(pugId: pugItem.pugId), animated: true)
+        self.navigationController?.pushViewController(
+            PugInfoViewController(
+                pugId: pugItem.pugId,
+                api: api
+            ),
+            animated: true
+        )
     }
 }
 

@@ -64,12 +64,14 @@ class PugInfoViewController: UIViewController {
     }
     
     let pugId: String
+    let api: APIProtocol.Type
     
-    init(pugId: String) {
+    init(pugId: String, api:APIProtocol.Type) {
         self.pugId = pugId
+        self.api = api
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -91,7 +93,7 @@ class PugInfoViewController: UIViewController {
     @objc
     func refresh() {
         state = .loading
-        API.getPugInfo(pugId) {[weak self] (error, pugInfo) in
+        api.getPugInfo(pugId) {[weak self] (error, pugInfo) in
             if let error = error {
                 self?.state = .error(error)
                 return

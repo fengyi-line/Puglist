@@ -14,7 +14,8 @@
 		1665D59323165BAE00E20688 /* PugListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1665D59223165BAE00E20688 /* PugListViewController.swift */; };
 		1665D59823165BB000E20688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1665D59723165BB000E20688 /* Assets.xcassets */; };
 		1665D59B23165BB000E20688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1665D59923165BB000E20688 /* LaunchScreen.storyboard */; };
-		1665D5A623165BB000E20688 /* puglistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1665D5A523165BB000E20688 /* puglistTests.swift */; };
+		1688572D232F8F2000FA1147 /* PugInfoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1688572C232F8F2000FA1147 /* PugInfoViewControllerTests.swift */; };
+		1688572F232F90C900FA1147 /* PugListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1688572E232F90C900FA1147 /* PugListViewControllerTests.swift */; };
 		16EE4A96232B90DE0083587F /* PugInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EE4A95232B90DE0083587F /* PugInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +40,9 @@
 		1665D59A23165BB000E20688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1665D59C23165BB000E20688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1665D5A123165BB000E20688 /* puglistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = puglistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1665D5A523165BB000E20688 /* puglistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = puglistTests.swift; sourceTree = "<group>"; };
 		1665D5A723165BB000E20688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1688572C232F8F2000FA1147 /* PugInfoViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PugInfoViewControllerTests.swift; sourceTree = "<group>"; };
+		1688572E232F90C900FA1147 /* PugListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PugListViewControllerTests.swift; sourceTree = "<group>"; };
 		16EE4A95232B90DE0083587F /* PugInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PugInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +102,8 @@
 		1665D5A423165BB000E20688 /* puglistTests */ = {
 			isa = PBXGroup;
 			children = (
-				1665D5A523165BB000E20688 /* puglistTests.swift */,
+				1688572E232F90C900FA1147 /* PugListViewControllerTests.swift */,
+				1688572C232F8F2000FA1147 /* PugInfoViewControllerTests.swift */,
 				1665D5A723165BB000E20688 /* Info.plist */,
 			);
 			path = puglistTests;
@@ -226,7 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1665D5A623165BB000E20688 /* puglistTests.swift in Sources */,
+				1688572F232F90C900FA1147 /* PugListViewControllerTests.swift in Sources */,
+				1688572D232F8F2000FA1147 /* PugInfoViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
