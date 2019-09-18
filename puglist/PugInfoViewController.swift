@@ -19,7 +19,6 @@ struct PugInfo: Codable {
 enum PugInfoViewControllerState {
     case normal(PugInfo)
     case error(Error)
-    case empty
     case loading
 }
 
@@ -46,8 +45,6 @@ class PugInfoViewController: UIViewController {
                 centerLabel.text = nil
             case .error(_):
                 centerLabel.text = "ERROR"
-            case .empty:
-                centerLabel.text = "EMPTY"
             case .loading:
                 centerLabel.text = "LOADING..."
             }
@@ -60,8 +57,6 @@ class PugInfoViewController: UIViewController {
         case .normal(let info):
             return info
         case .error(_):
-            return nil
-        case .empty:
             return nil
         case .loading:
             return nil
@@ -95,9 +90,15 @@ class PugInfoViewController: UIViewController {
 
     @objc
     func refresh() {
+        state = .loading
         API.getPugInfo(pugId) {[weak self] (error, pugInfo) in
+            if let error = error {
+                self?.state = .error(error)
+                return
+            }
 
             guard let pugInfo = pugInfo else {
+                self?.state = .error(NSError.init(domain: "", code: 0, userInfo: nil))
                 return
             }
 
