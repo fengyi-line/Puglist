@@ -100,7 +100,7 @@ class PugListViewController: UIViewController {
     @objc
     func refresh() {
         state = .loading
-        api.getPugList {[weak self] (error, pugs) in
+        API.getPugList {[weak self] (error, pugs) in
             if let error = error {
                 self?.state = .error(error)
                 return
